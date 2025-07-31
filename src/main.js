@@ -13,4 +13,6 @@ const app = createApp(App)
 app.use(router).use(ElementPlus).mount('#app')
 
 /* 处理错误 */
-app.config.errorHandler = (err) => {}
+app.config.errorHandler = (err) => {
+    console.error('全局错误：', err);
+}

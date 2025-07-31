@@ -1,9 +1,6 @@
-<template>
-  <router-view></router-view>
-</template>
-
 <script setup>
 import { onMounted } from 'vue';
+import { RouterView } from 'vue-router'
 
 onMounted(() => {
   document.body.style.setProperty("--el-color-primary", "#fe2c55");
@@ -12,6 +9,10 @@ onMounted(() => {
   document.body.style.setProperty("--el-color-primary-light-9", "rgba(23,119,222,.2)");
 })
 </script>
+
+<template>
+  <RouterView/>
+</template>
 
 <style lang="scss">
 @import url(highlight.js/styles/default.css);

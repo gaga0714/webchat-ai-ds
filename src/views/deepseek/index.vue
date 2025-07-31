@@ -1,70 +1,3 @@
-<template>
-  <div class="inner-html-container">
-    <div class="page">
-      <div class="tips">
-        <div class="title">{{queryInfos.model}}</div>
-        <div class="desc" v-if="!isMobile">
-          本网站采用本地缓存模式运行，不会留存任何涉及您个人的信息数据，请放心使用。
-        </div>
-        <div @click="handleClearStorage" v-else class="pointer">清空</div>
-      </div>
-      <div class="grid-space-between" :class="!isMobile ? 'grid-box' : ''">
-        <div class="left-container" v-if="!isMobile">
-          <el-button type="primary" class="add-btn" :icon="Plus"
-            size="large" @click="handleAddSession">新建对话</el-button>
-          <div class="session-area">
-            <div class="session-item" :class="activeIndex == index ? 'session-item-active' : ''"
-              v-for="(item, index) in sessionList" :key="index" @click="handleChangeSessionIndex(index)">
-              <span :class="activeIndex == index ? 'active-node' : 'normal-node'" v-if="editIndex != index">{{item.title}}</span>
-              <el-input :ref="`renameRef_${index}`" autofocus v-model="item.title" v-else size="small"
-                style="width: 120px" @blur="editIndex = -1" @change="editIndex = -1" />
-              <div class="icon-box">
-                <el-icon class="icon" color="#fff" @click.stop="handleClearSession(index)">
-                  <Brush />
-                </el-icon>
-                <el-icon class="icon" color="#fff" @click.stop="handleFocusInput(index)">
-                  <EditPen />
-                </el-icon>
-                <el-icon class="icon" color="#fff" @click.stop="handleDeleteSession(index)">
-                  <Delete />
-                </el-icon>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="container">
-          <div class="message-area">
-            <MessageComp ref="messageRef" :message="queryInfos.messages" :loading="loading"></MessageComp>
-          </div>
-          <div  class="user-tokens" :class="isMobile ? 'left-space' : ''">
-            <span v-if="queryInfos.model=='deepseek-chat'">
-            当前余额为：￥{{ totalAmt || 0 }}
-            </span>
-            <span v-else>免费</span>
-          </div>
-          <div class="input-area" :class="isMobile ? 'left-space' : ''">
-            <el-input v-model="queryKeys" id="keyInput" placeholder="请输入内容" show-word-limit
-              @keydown.enter.native="(e) => {
-                if (e.isComposing || loading) return;
-                handleRequest();
-              }" />
-            <el-select v-model="queryInfos.model" class="model-select" @change="handleModelChange">
-              <el-option label="DeepSeek" value="deepseek-chat" />
-              <el-option label="Gemini" value="gemini-chat" />
-            </el-select>
-            <el-button style="height: 40px" type="primary" @click="handleRequest" :disabled="!queryKeys"
-              :loading="loading">
-              <el-icon>
-                <Promotion />
-              </el-icon>
-            </el-button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</template>
-
 <script setup>
 import { ref, watch, onMounted, nextTick } from 'vue';
 import OpenAI from "openai";
@@ -306,6 +239,73 @@ onMounted(async () => {
   messageRef.value.scrollBottom();
 });
 </script>
+
+<template>
+  <div class="inner-html-container">
+    <div class="page">
+      <div class="tips">
+        <div class="title">{{queryInfos.model}}</div>
+        <div class="desc" v-if="!isMobile">
+          本网站采用本地缓存模式运行，不会留存任何涉及您个人的信息数据，请放心使用。
+        </div>
+        <div @click="handleClearStorage" v-else class="pointer">清空</div>
+      </div>
+      <div class="grid-space-between" :class="!isMobile ? 'grid-box' : ''">
+        <div class="left-container" v-if="!isMobile">
+          <el-button type="primary" class="add-btn" :icon="Plus"
+            size="large" @click="handleAddSession">新建对话</el-button>
+          <div class="session-area">
+            <div class="session-item" :class="activeIndex == index ? 'session-item-active' : ''"
+              v-for="(item, index) in sessionList" :key="index" @click="handleChangeSessionIndex(index)">
+              <span :class="activeIndex == index ? 'active-node' : 'normal-node'" v-if="editIndex != index">{{item.title}}</span>
+              <el-input :ref="`renameRef_${index}`" autofocus v-model="item.title" v-else size="small"
+                style="width: 120px" @blur="editIndex = -1" @change="editIndex = -1" />
+              <div class="icon-box">
+                <el-icon class="icon" color="#fff" @click.stop="handleClearSession(index)">
+                  <Brush />
+                </el-icon>
+                <el-icon class="icon" color="#fff" @click.stop="handleFocusInput(index)">
+                  <EditPen />
+                </el-icon>
+                <el-icon class="icon" color="#fff" @click.stop="handleDeleteSession(index)">
+                  <Delete />
+                </el-icon>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="message-area">
+            <MessageComp ref="messageRef" :message="queryInfos.messages" :loading="loading"></MessageComp>
+          </div>
+          <div  class="user-tokens" :class="isMobile ? 'left-space' : ''">
+            <span v-if="queryInfos.model=='deepseek-chat'">
+            当前余额为：￥{{ totalAmt || 0 }}
+            </span>
+            <span v-else>免费</span>
+          </div>
+          <div class="input-area" :class="isMobile ? 'left-space' : ''">
+            <el-input v-model="queryKeys" id="keyInput" placeholder="请输入内容" show-word-limit
+              @keydown.enter.native="(e) => {
+                if (e.isComposing || loading) return;
+                handleRequest();
+              }" />
+            <el-select v-model="queryInfos.model" class="model-select" @change="handleModelChange">
+              <el-option label="DeepSeek" value="deepseek-chat" />
+              <el-option label="Gemini" value="gemini-chat" />
+            </el-select>
+            <el-button style="height: 40px" type="primary" @click="handleRequest" :disabled="!queryKeys"
+              :loading="loading">
+              <el-icon>
+                <Promotion />
+              </el-icon>
+            </el-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
 
 <style scoped lang="scss">
 @use './styles/common.scss' as *

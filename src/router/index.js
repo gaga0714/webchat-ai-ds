@@ -6,7 +6,7 @@ import routes from "./routes";
 // 路由参数配置
 const router = createRouter({
   // 使用hash(createWebHashHistory)模式，(createWebHistory是HTML5历史模式，支持SEO)
-  history: createWebHistory(),
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes,
   scrollBehavior(to, from, savedPosition) {
     // 始终滚动到顶部

@@ -241,17 +241,11 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="inner-html-container">
+  <!-- <div class="inner-html-container"> -->
     <div class="page">
-      <div class="tips">
-        <div class="title">{{queryInfos.model}}</div>
-        <div class="desc" v-if="!isMobile">
-          本网站采用本地缓存模式运行，不会留存任何涉及您个人的信息数据，请放心使用。
-        </div>
-        <div @click="handleClearStorage" v-else class="pointer">清空</div>
-      </div>
       <div class="grid-space-between" :class="!isMobile ? 'grid-box' : ''">
         <div class="left-container" v-if="!isMobile">
+          <div class="sidebar">侧边栏折叠</div>
           <el-button type="primary" class="add-btn" :icon="Plus"
             size="large" @click="handleAddSession">新建对话</el-button>
           <div class="session-area">
@@ -275,6 +269,12 @@ onMounted(async () => {
           </div>
         </div>
         <div class="container">
+          <div class="tips">
+            <div class="title">{{queryInfos.model}}</div>
+            <div class="desc" v-if="!isMobile">本网站采用本地缓存模式运行，不会留存任何涉及个人的信息数据，请放心使用。</div>
+            <div @click="handleClearStorage" v-else class="pointer">清空</div>
+          </div>
+
           <div class="message-area">
             <MessageComp ref="messageRef" :message="queryInfos.messages" :loading="loading"></MessageComp>
           </div>
@@ -285,7 +285,7 @@ onMounted(async () => {
             <span v-else>免费</span>
           </div>
           <div class="input-area" :class="isMobile ? 'left-space' : ''">
-            <el-input v-model="queryKeys" id="keyInput" placeholder="请输入内容" show-word-limit
+            <el-input v-model="queryKeys" id="keyInput" :autosize="{minRows:2,maxRows:4}" type="textarea" placeholder="请输入内容" show-word-limit
               @keydown.enter.native="(e) => {
                 if (e.isComposing || loading) return;
                 handleRequest();
@@ -304,7 +304,7 @@ onMounted(async () => {
         </div>
       </div>
     </div>
-  </div>
+  <!-- </div> -->
 </template>
 
 <style scoped lang="scss">

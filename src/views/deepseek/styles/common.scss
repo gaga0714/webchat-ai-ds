@@ -1,10 +1,10 @@
-.inner-html-container {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #000;
+// .inner-html-container {
+//   width: 100vw;
+//   height: 100vh;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   background: #000;
 
   .add-btn {
     width: 100%;
@@ -13,18 +13,26 @@
   }
 
   .page {
-    width: 94vw;
-    height: 94vh;
-    background: #1f1f1f;
-    box-shadow: 0 0 20px rgba(254, 44, 85, 0.15);
-    box-sizing: border-box;
-    border-radius: 12px;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    // background: #d20707;
+    background: linear-gradient(90deg, #74ebd5,#ACB6E5);
+    // box-shadow: 0 0 20px rgba(254, 44, 85, 0.15);
+    // box-sizing: content-box;
+    // border-radius: 12px;
     overflow: hidden;
+
+    .sidebar{
+      height: 40px;
+    }
 
     .tips {
       width: 100%;
-      height: 40px;
-      background: linear-gradient(90deg, #fe2c55, #ff4d4d);
+      height: 50px;
+      background: linear-gradient(90deg, #2ebf91, #8360c3);
       color: #fff;
       display: flex;
       justify-content: space-between;
@@ -46,24 +54,27 @@
     .grid-box {
       display: grid;
       grid-template-columns: 280px auto;
-      gap: 16px;
-      padding: 16px;
+      // gap: 16px;
+      // padding: 16px;
     }
 
     .grid-space-between {
       width: 100%;
-      height: calc(100% - 40px);
+      // height: calc(100% - 40px);
+      height: 100%;
     }
 
     .left-container {
-      background-color: #2f2f2f;
+      background: linear-gradient(90deg, #8f9ad7,#cbb4d4);
       padding: 16px;
-      border-radius: 8px;
-      height: calc(94vh - 40px - 32px);
+      // border-radius: 8px;
+      // height: calc(94vh - 40px - 32px);
+      height: 100%;
 
       .session-area {
         margin-top: 16px;
         height: calc(100% - 56px);
+        // height: 100%;
         overflow-y: auto;
 
         &::-webkit-scrollbar {
@@ -131,25 +142,32 @@
     }
 
     .container {
+      display: flex;
+      flex-direction: column;
+      position: relative;
       width: 100%;
-      height: calc(94vh - 40px);
-      background: #1f1f1f;
+      height: calc(94vh - 4px);
+      // height: 100%;
       border-radius: 8px;
-      padding: 16px;
+      // padding: 16px;
       box-sizing: border-box;
 
       .message-area {
+        flex:1;
         height: calc(100% - 45px - 8px - 36px);
-        width: calc(100% - 12px);
-        padding: 8px 8px 0 8px;
+        // height: calc(100% - 70px - 36px);
+        width: calc(100% - 80px);
+        padding: 8px 8px 0 20px;
+        overflow-y: auto;
+        
       }
 
       .user-tokens {
         height: 30px;
         line-height: 30px;
-        padding: 0 8px 0 0;
+        padding: 0 8px 0 70px;
         font-size: 14px;
-        color: #c7c8ca;
+        color: #09348b;
         user-select: none;
       }
 
@@ -158,16 +176,26 @@
       }
 
       .input-area {
-        height: 36px;
+        // position: absolute;
+        // margin-bottom: 0px;
+        // height: 40px;
+        // align-self: center;
+        place-items: center;
         display: grid;
         grid-template-columns: auto 120px 80px;
         grid-gap: 10px;
-        box-sizing: border-box;
-        padding: 0 8px 8px 0;
+        box-sizing: content-box;
+        // padding: 0 8px 8px 20px;
+        margin-left: 70px;
+        margin-right: 60px;
+        // left: 60px;
+        // right: 90px;
+        background-color: transparent;
+        z-index: 10;
       }
     }
   }
-}
+// }
 
 // 按钮样式
 :deep(.el-button) {
@@ -195,6 +223,9 @@
 }
 
 // 输入框样式
+:deep(.el-textarea__inner){
+  resize: none;
+}
 :deep(.el-input__wrapper),
 :deep(.el-select__wrapper) {
   height: 40px;

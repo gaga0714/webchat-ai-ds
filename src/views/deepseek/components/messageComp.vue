@@ -87,12 +87,12 @@ defineExpose({
     width: 36px;
     height: 36px;
     background-color: #121212;
-    border: 2px solid #fe2c55;
+    border: 2.5px solid #a38cd1;
     padding: 4px;
   }
 
   &__content {
-    background-color: #2f2f2f;
+    background-color: #493343;
     position: relative;
     border-radius: 8px;
 

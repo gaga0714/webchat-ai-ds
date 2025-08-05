@@ -86,15 +86,23 @@ defineExpose({
   &__avatar {
     width: 36px;
     height: 36px;
-    background-color: #121212;
+    background-color: #370e49;
     border: 2.5px solid #a38cd1;
     padding: 4px;
   }
 
   &__content {
-    background-color: #493343;
+    // background-color: #b883c3;
     position: relative;
     border-radius: 8px;
+    
+    &--left{
+      background-color:#6c4e79;
+    }
+    &--right{
+      background-color: #b62d8dc4;
+    }
+    
 
     &--left::before,
     &--right::before {
@@ -107,12 +115,12 @@ defineExpose({
     }
 
     &--left::before {
-      border-right-color: #2f2f2f;
+      border-right-color: #6c4e79;
       left: -9px;
     }
 
     &--right::before {
-      border-left-color: #2f2f2f;
+      border-left-color: #b62d8dc4;
       right: -9px;
     }
   }

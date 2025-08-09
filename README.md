@@ -33,9 +33,6 @@
 
     - 部署构建后的文件到服务器
 
-## 环境配置
-- `Node.js:` v18.20.5
-- `npm:` 10.8.2
 
 ## 效果图
 ![alt text](/assets/image.png)

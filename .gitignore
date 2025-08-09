@@ -25,3 +25,5 @@ dist-ssr
 *.sw?
 # key config
 src/config/key.js
+
+stats.html
